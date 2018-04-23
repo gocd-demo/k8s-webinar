@@ -14,12 +14,12 @@
 
 FROM php:7.0.29-apache
 
-RUN apt-get update
-RUN apt-get install -y wget
-RUN wget http://pear.php.net/go-pear.phar
-RUN php go-pear.phar
-RUN pear channel-discover pear.nrk.io
-RUN pear install nrk/Predis
+RUN apt-get update && \
+    apt-get install -y wget && \
+    wget http://pear.php.net/go-pear.phar && \
+    php go-pear.phar && \
+    pear channel-discover pear.nrk.io && \
+    pear install nrk/Predis
 
 # If the container's stdio is connected to systemd-journald,
 # /proc/self/fd/{1,2} are Unix sockets and apache will not be able to open()
