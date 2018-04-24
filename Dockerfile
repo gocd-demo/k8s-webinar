@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM php:7.0.29-apache
+FROM php:7.1.16-apache
 
 RUN apt-get update && \
     apt-get install -y wget && \
