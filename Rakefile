@@ -8,10 +8,9 @@ def get_var(name)
   end
 end
 
-username = get_var('DOCKERHUB_ORG')
-go_pipeline_label = get_var('GO_PIPELINE_LABEL')
-
 task :create_docker_image do
+  username = get_var('DOCKERHUB_ORG')
+  go_pipeline_label = get_var('GO_PIPELINE_LABEL')
   sh("docker build . -t #{username}/artifact_demo:#{go_pipeline_label}")
 end
 
@@ -21,6 +20,8 @@ task :clean_up_image do
 end
 
 task :create_json do
+  username = get_var('DOCKERHUB_ORG')
+  go_pipeline_label = get_var('GO_PIPELINE_LABEL')
   template = File.read('artifact_info.json.erb')
   renderer = ERB.new(template, nil, '-')
   File.open('artifact_info.json', 'w') do |f|
