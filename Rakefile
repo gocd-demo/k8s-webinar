@@ -27,3 +27,12 @@ task :create_json do
     f.puts(renderer.result(binding))
   end
 end
+
+task :prettify_k8s_status do
+  filename = get_var('FILENAME')
+  template = File.read('status.html.erb')
+  renderer = ERB.new(template, nil, '-')
+  File.open('status.html', 'w') do |f|
+    f.puts(renderer.result(binding))
+  end
+end
