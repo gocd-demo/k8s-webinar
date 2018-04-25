@@ -12,21 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM php:7.1.16-apache
+FROM webdevops/php-apache:alpine-php7
 
-RUN apt-get update && \
-    apt-get install -y wget && \
-    wget http://pear.php.net/go-pear.phar && \
-    php go-pear.phar && \
+RUN apk --no-cache upgrade && \
+    apk add --no-cache wget php7-pear && \
     pear channel-discover pear.nrk.io && \
     pear install nrk/Predis
-
-# If the container's stdio is connected to systemd-journald,
-# /proc/self/fd/{1,2} are Unix sockets and apache will not be able to open()
-# them. Use "cat" to write directly to the already opened fds without opening
-# them again.
-RUN sed -i 's#ErrorLog /proc/self/fd/2#ErrorLog "|$/bin/cat 1>\&2"#' /etc/apache2/apache2.conf
-RUN sed -i 's#CustomLog /proc/self/fd/1 combined#CustomLog "|/bin/cat" combined#' /etc/apache2/apache2.conf
 
 ADD guestbook.php /var/www/html/guestbook.php
 ADD controllers.js /var/www/html/controllers.js
