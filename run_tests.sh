@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 CONTAINER_ID=$(docker run -d -p8081:80 -ti gocddemo/guestbook:v${GO_DEPENDENCY_LABEL_UPSTREAM})
 npm install --prefix functional_tests
