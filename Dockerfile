@@ -1,24 +1,3 @@
-# Copyright 2016 The Kubernetes Authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+FROM gocddemo/guestbook-base:webinar
 
-FROM webdevops/php-apache:alpine-php7
-
-RUN apk --no-cache upgrade && \
-    apk add --no-cache wget php7-pear && \
-    pear channel-discover pear.nrk.io && \
-    pear install nrk/Predis
-
-ADD guestbook.php /var/www/html/guestbook.php
-ADD controllers.js /var/www/html/controllers.js
 ADD index.html /var/www/html/index.html
