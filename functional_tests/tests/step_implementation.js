@@ -3,7 +3,7 @@
 const { openBrowser, closeBrowser, goto, title, $, write, into, button } = require('taiko');
 const assert = require("assert");
 
-beforeSuite(async () => openBrowser({ executablePath: '/usr/bin/chromium-browser', args: ['--no-sandbox', '--headless', '--disable-gpu'] }));
+beforeSuite(async () => openBrowser());
 
 afterSuite(async () => closeBrowser());
 
