@@ -8,14 +8,14 @@ beforeSuite(async () => openBrowser({ args: ['--no-sandbox', '--headless', '--di
 afterSuite(async () => closeBrowser());
 
 
-step("Go to homepage at <query>", async query => goto(query));
+step("Go to homepage at <query>",{continueOnFailure: true}, async query => goto(query));
 
-step("Check title is <word>", async (word) => {
+step("Check title is <word>", {continueOnFailure: true}, async (word) => {
     let t = await title();
     assert.equal(t, word)
 });
 
-step("Enter <word> in textbox", async (word) => {
+step("Enter <word> in textbox", {continueOnFailure: true}, async (word) => {
     await write(word, into($('input')));
 });
 
