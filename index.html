@@ -6,7 +6,16 @@
     <script src="controllers.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.js"></script>
   </head>
-  <body ng-controller="RedisCtrl">
+  <body ng-controller="RedisCtrl" onload="return ran_col()" id="guestbook_page">
+      <script type="text/javascript">
+       function ran_col() { //function name
+           var color = '#'; // hexadecimal starting symbol
+           var letters = ['cdc9c9', 'faebd7', '8b8378', 'e6e6fa', 'fff5ee', 'dccdc', 'e6e6fa', 'ffefd5', 'eee8dc', 'fffafa', 'f8f8ff', '00ced1', 'f0e68c']
+           color += letters[Math.floor(Math.random() * letters.length)];
+           document.getElementById('guestbook_page').style.background = color; // Setting the random color on your div element.
+       }
+      </script>
+
     <div style="width: 50%; margin-left: 20px">
       <h2>Guestbook</h2>
     <form>
