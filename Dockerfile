@@ -1,3 +1,3 @@
-FROM gocddemo/guestbook-base:v1
+FROM gocddemo/guestbook-base:webinar
 
 ADD index.html /var/www/html/index.html
